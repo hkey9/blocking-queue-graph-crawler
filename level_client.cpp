@@ -11,7 +11,6 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
-#include "rapidjson/error/error.h"
 #include "rapidjson/reader.h"
 #include <rapidjson/document.h>
 
