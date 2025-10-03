@@ -1,14 +1,12 @@
-#CXXFLAGS=-I path/to/rapidjson
+#CXXFLAGS=-I ~/prgs/rapidjson/include
 LDFLAGS=-lcurl
 LD=g++
 CC=g++
 
-all: level_client par_level_client
+all: client
 
-level_client: level_client.o
+client: client.o
 	$(LD) $< -o $@ $(LDFLAGS)
 
-
-
 clean:
-	-rm level_client level_client.o
+	-rm client client.o
