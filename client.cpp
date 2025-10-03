@@ -6,7 +6,6 @@
 #include <cstdlib>
 #include <curl/curl.h>
 #include <stdexcept>
-#include "rapidjson/error/error.h"
 #include "rapidjson/reader.h"
 #include <mutex>
 #include <condition_variable>
