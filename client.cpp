@@ -152,7 +152,7 @@ struct ParseException : std::runtime_error, rapidjson::ParseResult {
 #define RAPIDJSON_PARSE_ERROR_NORETURN(code, offset) \
     throw ParseException(code, #code, offset)
 
-#include <rapidjson/document.h>
+
 #include <chrono>
 
 using namespace std;
