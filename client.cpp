@@ -25,7 +25,7 @@ bool debug = false;
 // Updated service URL
 const string SERVICE_URL = "http://hollywood-graph-crawler.bridgesuncc.org/neighbors/";
 
-// --- JSON parse exception wrapper from starter kit ---
+// JSON parse exception wrapper from starter kit
 struct ParseException : std::runtime_error, rapidjson::ParseResult {
     ParseException(rapidjson::ParseErrorCode code, const char* msg, size_t offset) :
         std::runtime_error(msg),
@@ -35,7 +35,7 @@ struct ParseException : std::runtime_error, rapidjson::ParseResult {
 #define RAPIDJSON_PARSE_ERROR_NORETURN(code, offset) \
     throw ParseException(code, #code, offset)
 
-// --- URL encode helper (requires a CURL* handle) ---
+// URL encode helper (requires a CURL* handle)
 string url_encode(CURL* curl, const string& input) {
     char* out = curl_easy_escape(curl, input.c_str(), input.size());
     if (!out) return input;
@@ -44,14 +44,14 @@ string url_encode(CURL* curl, const string& input) {
     return s;
 }
 
-// --- Write callback for libcurl ---
+// Write callback for libcurl
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, string* output) {
     size_t totalSize = size * nmemb;
     output->append((char*)contents, totalSize);
     return totalSize;
 }
 
-// --- Fetch neighbors using provided CURL handle (per-thread) ---
+// Fetch neighbors using provided CURL handle (per-thread)
 string fetch_neighbors_with_curl(CURL* curl, const string& node) {
     string url = SERVICE_URL + url_encode(curl, node);
     string response;
@@ -83,7 +83,7 @@ string fetch_neighbors_with_curl(CURL* curl, const string& node) {
     return (res == CURLE_OK) ? response : "{}";
 }
 
-// --- Extract neighbors from JSON string using RapidJSON ---
+// Extract neighbors from JSON string using RapidJSON
 vector<string> get_neighbors_from_json(const string& json_str) {
     vector<string> neighbors;
     try {
@@ -107,7 +107,7 @@ vector<string> get_neighbors_from_json(const string& json_str) {
     return neighbors;
 }
 
-// --- Thread-safe blocking queue for work items ---
+// Thread-safe blocking queue for work items
 template<typename T>
 class BlockingQueue {
 public:
@@ -159,7 +159,7 @@ private:
     bool done;
 };
 
-// --- BFS worker and orchestration ---
+//  BFS worker and orchestration 
 vector<string> parallel_bfs(const string& start_node, int max_depth, int num_workers = 8) {
     // Work item is pair<node, depth>
     BlockingQueue<pair<string,int>> workq;
